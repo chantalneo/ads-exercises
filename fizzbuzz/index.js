@@ -30,3 +30,9 @@ function fizzBuzz(n) {
 }
 
 module.exports = fizzBuzz;
+
+// Notes:
+// 1. Use modulo operator to determine the remainder of a number during division.
+//    So for example if we took 9 % 3, it returns zero. In this case it is zero because because if we divide 9 by 3, 3 goes into 9 exactly three times 
+//    and there is no remainder left over. However, if we divide 10 by 3, well then 3 goes into 10 still three times and there's one left over. I.e
+//    10 % 3 returns 1.
