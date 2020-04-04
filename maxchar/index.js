@@ -6,19 +6,26 @@
 // maxChar("apple 1231111") === "1"
 
 function maxChar(str) {
-    const string = "Hello There!";
-    const chars = {};
+    const charMap = {};
+    let max = 0;
+    let maxChar = '';
 
-    for (let char of string) {
-        // if (!chars[char]) {
-        //     chars[char] = 1;
-        // } else {
-        //     chars[char]++;
-        // }
-        chars[char] = chars[char] + 1 || 1; // Check out notes' point 2
-    } 
+    for (let char of str) {
+        if (charMap[char]) {
+            charMap[char]++;
+        } else {
+            charMap[char] = 1;
+        }
+    }
 
-    return chars;
+    for (let char in charMap) { // For in loop because we're iterating through an object as opposed to an array or string
+        if (charMap[char] > max) {
+            max = charMap[char];
+            maxChar = char;
+        }
+    }
+
+    return maxChar;
 }
 
 console.log(maxChar('Chantal'))
@@ -55,7 +62,7 @@ module.exports = maxChar;
 //    we just assign the value of 1 instead. I.e. if first statement becomes falsie then assign one to chars[char].
 
 // function maxChar(str) { // Personal attempt
-//     const splitted = str.split('');
+//     const splitted = str.split(''); // Not required to split, could just use str in the for of loop that can iterate through an array / a string
 //     const counts = {};
 
 //     let highestCount = 0;
@@ -69,4 +76,20 @@ module.exports = maxChar;
 //         }
 //     }   
 //     return maxChar; 
+// }
+
+// function maxChar(str) { // Instructor's illustration on how to create the data structure in the JS playground
+//     const string = "Hello There!";
+//     const chars = {};
+
+//     for (let char of string) {
+//         // if (!chars[char]) {
+//         //     chars[char] = 1;
+//         // } else {
+//         //     chars[char]++;
+//         // }
+//         chars[char] = chars[char] + 1 || 1; // Check out notes' point 2
+//     } 
+
+//     return chars;
 // }
