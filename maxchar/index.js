@@ -6,20 +6,19 @@
 // maxChar("apple 1231111") === "1"
 
 function maxChar(str) {
-    const splitted = str.split('');
-    const counts = {};
+    const string = "Hello There!";
+    const chars = {};
 
-    let highestCount = 0;
-    let maxChar = "";
+    for (let char of string) {
+        // if (!chars[char]) {
+        //     chars[char] = 1;
+        // } else {
+        //     chars[char]++;
+        // }
+        chars[char] = chars[char] + 1 || 1; // Check out notes' point 2
+    } 
 
-    for (char of splitted) {
-        counts[char] = counts[char] ? counts[char] + 1 : 1;
-        if (counts[char] > highestCount) {
-            highestCount = counts[char];
-            maxChar = char;
-        }
-    }   
-    return maxChar; 
+    return chars;
 }
 
 console.log(maxChar('Chantal'))
@@ -48,5 +47,26 @@ module.exports = maxChar;
 //                              !: 1,
 //                           }
 //
-//   So when you have this kind of map right here it makes many different types of questions very straightforward. Setting up an object like this is 
-//   clearly a really strong tool for solving any type of question around producing some counts or verification or validation of a word.
+//    So when you have this kind of map, this kind of data structure right here it makes many different types of questions very straightforward. 
+//    Setting up an object like this is clearly a really strong tool for solving any type of question around producing some counts or verification 
+//    or validation of a word.
+//
+// 2. This is one way of handling it eloquently. In this particular case, we're saying that if adding one onto this number resulted in a null value that's fine,
+//    we just assign the value of 1 instead. I.e. if first statement becomes falsie then assign one to chars[char].
+
+// function maxChar(str) { // Personal attempt
+//     const splitted = str.split('');
+//     const counts = {};
+
+//     let highestCount = 0;
+//     let maxChar = "";
+
+//     for (char of splitted) {
+//         counts[char] = counts[char] ? counts[char] + 1 : 1;
+//         if (counts[char] > highestCount) {
+//             highestCount = counts[char];
+//             maxChar = char;
+//         }
+//     }   
+//     return maxChar; 
+// }
