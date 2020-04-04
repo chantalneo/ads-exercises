@@ -7,7 +7,12 @@
 //   reverse('Greetings!') === '!sgniteerG'
 
 function reverse(str) {
-    return str.split("").reverse().join("");
+    let reversed = "";
+
+    for (let character of str) {
+        reversed = character + reversed;
+    }
+    return reversed;
 }
 
 console.log(reverse("Chantal")); // For debugging purpose with node index.js command in the file directory
@@ -23,4 +28,8 @@ module.exports = reverse;
 //     }
 
 //     return reversed;
+// }
+
+// function reverse(str) { // Instructor's solution 1
+//     return str.split("").reverse().join("");
 // }
