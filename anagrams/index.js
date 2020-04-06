@@ -33,3 +33,37 @@ console.log(anagrams("Chantal", "Jerry"));
 console.log(anagrams("erryCh", "Cherry"));
 
 module.exports = anagrams;
+
+
+// Notes: 
+// 1. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+//    RegExp is the short for regular expressions. Regular expressions can be used to manipulate strings very easily. And in this case we can use a regular expression to very easily 
+//    remove all the spaces and exclamation marks from a given string.
+// 
+//    \w matches any alphanumeric character from the basic Latin alphabet, including the underscore. Equivalent to [A-Za-z0-9_]
+//
+//    Example: 
+//    const word = "HI THERE!!!!!";
+//    word.replace(/[^\w]/g, "");
+//    word will become "HITHERE" - our bare characters.
+//
+//    And since in this problem with just wanna work with lower case, we can utilize toLowerCase() method on our string.
+//
+// 2. We could use character maps to solve this question. However, there could be a gotcha in certain case. E.g. the following,
+//    hello would give you:
+//    {
+//       h: 1,
+//       e: 1, 
+//       l: 2,
+//       o: 1
+//    }
+//    and hello would give yous:
+//    {
+//       h: 1,
+//       e: 1, 
+//       l: 2,
+//       o: 1,
+//       s: 1
+//    }
+//    Now imagine if we wrote a loop to iterate only through the first object, we completely miss the fact that this other character map has an extra s on it after
+//    we've now finished iterating through the first object! So we need to handle this kind of solution well.
