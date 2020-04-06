@@ -9,24 +9,30 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-    const objectifiedStringA = objectifyString(stringA);
-    const objectifiedStringB = objectifyString(stringB);
+    const aCharMap = buildCharMap(stringA);
+    const bCharMap = buildCharMap(stringB);
 
-    return JSON.stringify(objectifiedStringA) === JSON.stringify(objectifiedStringB);
-}
+    if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+        return false;
+    } 
 
-function objectifyString(string) {
-    const regex = /[a-z]/g
-    const processedStringToArray = string.toLowerCase().match(regex).sort()
-    const resultingObject = {};
-    for (character of processedStringToArray) {
-        if (resultingObject[character]) {
-            resultingObject[character]++;
-        } else {
-            resultingObject[character] = 1;
+    for (let char in aCharMap) {
+        if (aCharMap[char] !== bCharMap[char]) {
+            return false;
         }
     }
-    return resultingObject;
+    
+    return true;
+}
+
+function buildCharMap(str) {
+    const charMap = {};
+
+    for (let char of str.replace(/[^\w]/g, "").toLowerCase()) {
+        charMap[char] = charMap[char] + 1 || 1;
+    }
+
+    return charMap;
 }
 
 console.log(anagrams("Chantal", "Jerry"));
@@ -67,3 +73,32 @@ module.exports = anagrams;
 //    }
 //    Now imagine if we wrote a loop to iterate only through the first object, we completely miss the fact that this other character map has an extra s on it after
 //    we've now finished iterating through the first object! So we need to handle this kind of solution well.
+//
+// 2. const obj = {
+//       a: 1,
+//       b: 1,
+//       c: 1
+//    }
+//    Object.keys(obj) would give you ["a", "b", "c"] 
+//    Object.keys(obj).length would give you 3 
+
+// function anagrams(stringA, stringB) { // Personal attempt
+//     const objectifiedStringA = objectifyString(stringA);
+//     const objectifiedStringB = objectifyString(stringB);
+
+//     return JSON.stringify(objectifiedStringA) === JSON.stringify(objectifiedStringB);
+// }
+
+// function objectifyString(string) {
+//     const regex = /[a-z]/g
+//     const processedStringToArray = string.toLowerCase().match(regex).sort()
+//     const resultingObject = {};
+//     for (character of processedStringToArray) {
+//         if (resultingObject[character]) {
+//             resultingObject[character]++;
+//         } else {
+//             resultingObject[character] = 1;
+//         }
+//     }
+//     return resultingObject;
+// }
