@@ -8,15 +8,18 @@
 //   capitalize('look, it is working!') --> 'Look, It Is Working!'
 
 function capitalize(str) {
-    const strSplittedBySpace = str.split(" ");
-    let index = 0;
-
-    while (index < strSplittedBySpace.length) {
-        strSplittedBySpace[index] = strSplittedBySpace[index][0].toUpperCase() + strSplittedBySpace[index].substring(1);
-        index++;
+    // Make an empty array of 'words'
+    const words = [];
+    // Split the input string by spaces to get an array
+    // For each word in the array
+    for (let word of str.split(' ')) {
+        // Uppercase the first letter of the word
+        // Join first letter with rest of the string
+        // Push result into 'words' array
+        words.push(word[0].toUpperCase() + word.slice(1));
     }
-
-    return strSplittedBySpace.join(" ");
+    // Join 'words' into a string and return it
+    return words.join(' ');
 }
 
 console.log(capitalize("chantal is attempting capitalization! can she do it?"))
@@ -33,3 +36,15 @@ module.exports = capitalize;
 //         Let's imagine that we have a word of simple "there". If we do slice with simply one, i.e. word.slice(1), it gives us everything after the T. Thus, returning "here".
 //         Now if we wanted to get just the T we can look out word[0] and now the part that you really need to be aware of is that we have access to the upper case function. 
 //         So we can do a word[0].toUpperCase(). 
+
+// function capitalize(str) { // Personal attempt
+//     const strSplittedBySpace = str.split(" ");
+//     let index = 0;
+
+//     while (index < strSplittedBySpace.length) {
+//         strSplittedBySpace[index] = strSplittedBySpace[index][0].toUpperCase() + strSplittedBySpace[index].substring(1);
+//         index++;
+//     }
+
+//     return strSplittedBySpace.join(" ");
+// }
