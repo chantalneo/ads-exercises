@@ -9,30 +9,11 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-    const aCharMap = buildCharMap(stringA);
-    const bCharMap = buildCharMap(stringB);
-
-    if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
-        return false;
-    } 
-
-    for (let char in aCharMap) {
-        if (aCharMap[char] !== bCharMap[char]) {
-            return false;
-        }
-    }
-    
-    return true;
+    return cleanString(stringA) === cleanString(stringB);
 }
 
-function buildCharMap(str) {
-    const charMap = {};
-
-    for (let char of str.replace(/[^\w]/g, "").toLowerCase()) {
-        charMap[char] = charMap[char] + 1 || 1;
-    }
-
-    return charMap;
+function cleanString(str) {
+    return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
 }
 
 console.log(anagrams("Chantal", "Jerry"));
@@ -74,13 +55,19 @@ module.exports = anagrams;
 //    Now imagine if we wrote a loop to iterate only through the first object, we completely miss the fact that this other character map has an extra s on it after
 //    we've now finished iterating through the first object! So we need to handle this kind of solution well.
 //
-// 2. const obj = {
+// 3. const obj = {
 //       a: 1,
 //       b: 1,
 //       c: 1
 //    }
 //    Object.keys(obj) would give you ["a", "b", "c"] 
 //    Object.keys(obj).length would give you 3 
+//
+// 4. const numbers = [10, 30, 5, -90, 10000];
+//    numbers.sort() would give you [-90, 10, 10000, 30, 5]
+//
+//    const characters = ["z", "c", "b", "d", "y"];
+//    characters.sort() would give you ["b", "c", "d", "y", "z"]
 
 // function anagrams(stringA, stringB) { // Personal attempt
 //     const objectifiedStringA = objectifyString(stringA);
@@ -101,4 +88,31 @@ module.exports = anagrams;
 //         }
 //     }
 //     return resultingObject;
+// }
+
+// function anagrams(stringA, stringB) { // Instructor's solution 1
+//     const aCharMap = buildCharMap(stringA);
+//     const bCharMap = buildCharMap(stringB);
+
+//     if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+//         return false;
+//     } 
+
+//     for (let char in aCharMap) {
+//         if (aCharMap[char] !== bCharMap[char]) {
+//             return false;
+//         }
+//     }
+    
+//     return true;
+// }
+
+// function buildCharMap(str) {
+//     const charMap = {};
+
+//     for (let char of str.replace(/[^\w]/g, "").toLowerCase()) {
+//         charMap[char] = charMap[char] + 1 || 1;
+//     }
+
+//     return charMap;
 // }
