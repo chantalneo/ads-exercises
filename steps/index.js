@@ -17,8 +17,29 @@
 //       '### '
 //       '####'
 
-function steps(n) {
+function steps(n, row = 0, stair = '') {
+    // Base case: If (row === n) then we have hit the end of our problem
+    if (row === n) {
+        return;
+    }
+    // If the 'stair' string has a length === n then we are at the end of a row
+    if (n === stair.length) {
+        console.log(stair)
+        return steps(n, ++row); // Or could just steps(n, row + 1) like instructor
+    }
+    // If the length of the stair string is less than or equal to the row number we're working on, we add a '#', otherwise add a space
 
+    // if (stair.length <= row) { // Instructor's
+    //     stair += "#";
+    // } else {
+    //     stair += " ";
+    // }
+
+    // stair.length <= row ? stair += "#" : stair += " "; // Instructor's equivalent
+    // steps(n, row, stair);
+    
+    const add = stair.length <= row ? "#" : " ";
+    steps(n, row, stair + add);
 }
 
 steps(12);
