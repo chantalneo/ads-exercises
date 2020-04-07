@@ -18,24 +18,7 @@
 //       '####'
 
 function steps(n) {
-    // From 0 to n - for row 
-    for (let row = 0; row < n; row++) {
-        // Create an empty string, 'stair'
-        let stair = '';
-        // From 0 to n - for column
-        for (let column = 0; column < n; column++) {
-            // IF the current column is equal to or less than the current row
-            if (column <= row) {
-                // Add a '#' to 'stair'
-                stair += '#';
-            } else { // ELSE
-                // Add a space to 'stair'
-                stair += ' ';
-            }
-        }
-        // Console log 'stair'
-        console.log(stair);
-    }
+
 }
 
 steps(12);
@@ -52,9 +35,51 @@ module.exports = steps;
 //   Row 1 | # # _
 //       2 | # # # 
 //         V
+//
+// 2. Review on recursion...
+//    function printNumber(n) {
+//       if (n === 0) { // Base case - to stop the recursion
+//          return;
+//       } else {
+//          console.log(n)
+//          printNumber(n-1)
+//       }
+//    }
+//    printNumber(5);
+//
+//    Recursion tips...
+//    1. Figure out the bare minimum pieces of information to represent your problem
+//       - I.e. it was our current counter. No extra piece of info like e.g., the previous number called or some random object that we're not doing anything with, were passed
+//    2. Give reasonable defaults to the bare minimum pieces of info
+//       - I.e. we had said that we were going to provide the number and then always subtract 1 to get towards our base case right there
+//       - Could also change the decrement step, e.g., printNumber(n-dec) alongside with function printNumber(n, dec = 1), printNumber(n, 2) to substract by 2. 
+//         Give a default to dec to avoid falling into infinite loop if user didn't pass in an optional value for dec
+//    3. Check the base case. Is there any work left to do? If not, return
+//    4. Do some work. Call your function again, making sure the arguments have changed in some fashion
 
 // function steps(n) { // Personal attempt
 //     for (let i = 1; i <= n; i++) {
 //         console.log("#".repeat(i) + " ".repeat(n-i));
+//     }
+// }
+
+// function steps(n) { // Instructor's solution 1
+//     // From 0 to n - for row 
+//     for (let row = 0; row < n; row++) {
+//         // Create an empty string, 'stair'
+//         let stair = '';
+//         // From 0 to n - for column
+//         for (let column = 0; column < n; column++) {
+//             // IF the current column is equal to or less than the current row
+//             if (column <= row) {
+//                 // Add a '#' to 'stair'
+//                 stair += '#';
+//             } else { // ELSE
+//                 // Add a space to 'stair'
+//                 stair += ' ';
+//             }
+//         }
+//         // Console log 'stair'
+//         console.log(stair);
 //     }
 // }
