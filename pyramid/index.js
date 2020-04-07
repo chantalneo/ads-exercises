@@ -19,23 +19,34 @@
 //       ' ##### '
 //       '#######'
 
-function pyramid(n, row = 0, layer = '') {
-    const layerWidth = n + (n-1);
-	if (n === row) {
-        return;
-    }
-    if (layer.length === layerWidth) {
-  	    console.log(layer);
-        return pyramid(n, ++row);
-    }
-    if (layer.length + 1 >= n-row && layer.length + 1 <= n+row) {
-  	    layer += '#';
-    } else {
-        layer += ' ';
-    }
-    pyramid(n, row, layer);
+function pyramid(n) {
+    // From 0 to n (iterate through rows)
+        // Create an empty string, 'level'
+        // From 0 to ??? (columns)
+            // IF the column should have a #
+                // Add a '#' to 'level'
+            // ELSE
+                // Add a space to 'level'
+        // Console log 'stair'
 }
 
 pyramid(4)
 
 module.exports = pyramid;
+
+// function pyramid(n, row = 0, layer = '') { // Personal attempt
+//     const layerWidth = n + (n-1);
+// 	if (n === row) {
+//         return;
+//     }
+//     if (layer.length === layerWidth) {
+//   	    console.log(layer);
+//         return pyramid(n, ++row);
+//     }
+//     if (layer.length + 1 >= n-row && layer.length + 1 <= n+row) {
+//   	    layer += '#';
+//     } else {
+//         layer += ' ';
+//     }
+//     pyramid(n, row, layer);
+// }
