@@ -20,14 +20,21 @@
 //       '#######'
 
 function pyramid(n) {
-    // From 0 to n (iterate through rows)
-        // Create an empty string, 'level'
-        // From 0 to ??? (columns)
-            // IF the column should have a #
-                // Add a '#' to 'level'
-            // ELSE
-                // Add a space to 'level'
-        // Console log 'stair'
+    const midpoint = Math.floor((2 * n - 1) / 2);
+
+    for (let row = 0; row < n; row++) {
+        let level = '';
+
+        for (let column = 0; column < 2 * n - 1; column++) { 
+            if (midpoint - row <= column && midpoint + row >= column) {
+                level += '#';
+            } else {
+                level += ' ';
+            }
+        }
+
+        console.log(level);
+    }
 }
 
 pyramid(4)
@@ -49,4 +56,25 @@ module.exports = pyramid;
 //         layer += ' ';
 //     }
 //     pyramid(n, row, layer);
+// }
+
+// function pyramid(n) { // Personal attempt at instructor's solution 1 pseudo code
+//     // From 0 to n (iterate through rows)
+//     for (let row = 0; row < n; row++) {
+//         // Create an empty string, 'level'
+//         let level = '';
+//         // From 0 to ??? (columns)
+//         for (let column = 0; column < n + (n-1); column++) { 
+//             // IF the column should have a #
+//             if (column+1 >= n-row && column+1 <= n+row) {
+//                 // Add a '#' to 'level'
+//                 level += '#';
+//             } else { // ELSE
+//                 // Add a space to 'level'
+//                 level += ' ';
+//             }
+//         }
+//         // Console log 'level'
+//         console.log(level);
+//     }
 // }
