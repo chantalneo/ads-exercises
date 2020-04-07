@@ -13,7 +13,29 @@
 //       '  #  '
 //       ' ### '
 //       '#####'
+//   pyramid(4)
+//       '   #   '
+//       '  ###  '
+//       ' ##### '
+//       '#######'
 
-function pyramid(n) {}
+function pyramid(n, row = 0, layer = '') {
+    const layerWidth = n + (n-1);
+	if (n === row) {
+        return;
+    }
+    if (layer.length === layerWidth) {
+  	    console.log(layer);
+        return pyramid(n, ++row);
+    }
+    if (layer.length + 1 >= n-row && layer.length + 1 <= n+row) {
+  	    layer += '#';
+    } else {
+        layer += ' ';
+    }
+    pyramid(n, row, layer);
+}
+
+pyramid(4)
 
 module.exports = pyramid;
