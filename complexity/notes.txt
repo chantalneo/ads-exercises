@@ -1,0 +1,62 @@
+Runtime Complexity
+- Describes the performance of an algorithm 
+
+Questions we might have:
+1. How much more processing power/time is required to run your algorithm if we double the inputs?
+   - Using String Reverse exercise to illustrate this:
+
+        function reverse(str) { // Instructor's solution 2
+            let reversed = "";
+
+            for (let character of str) {
+                reversed = character + reversed;
+            }
+            return reversed;
+        }
+
+        abc -> cba
+
+        abcdefghijklmnopqrstuvwxyz -> zyxwvutsrqponmlkjihgfedcba
+
+        Each additional character = 1 step through 1 loop
+        Therefore, this would be 'N', or 'linear' runtime
+
+    - Using Steps exercise to illustrate another type:
+
+        function steps(n) { // Instructor's solution 1
+        // From 0 to n - for row 
+        for (let row = 0; row < n; row++) {
+            // Create an empty string, 'stair'
+            let stair = '';
+            // From 0 to n - for column
+            for (let column = 0; column < n; column++) {
+                // IF the current column is equal to or less than the current row
+                if (column <= row) {
+                    // Add a '#' to 'stair'
+                    stair += '#';
+                } else { // ELSE
+                    // Add a space to 'stair'
+                    stair += ' ';
+                }
+            }
+            // Console log 'stair'
+            console.log(stair);
+        }
+
+        when n = 2, we had to do 4 things...
+        #_
+        ##
+
+        when n = 3, we had to do 9 things...
+        #__
+        ##_
+        ###
+
+        when n = 4, we had to do 16 things...
+        #___
+        ##__
+        ###_
+        ####
+
+        As 'n' increased by one, we had to do way, way more stuff, or (n*n) things total
+        Therefore, this would be n^2, quadratic runtime
