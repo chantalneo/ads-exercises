@@ -8,7 +8,7 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {
+function fib(n) { // An exponential runtime, which should be avoided. So how can we improve this solution? Check out notes' point 1
     if (n < 2) {
         return n;
     }
@@ -19,6 +19,11 @@ function fib(n) {
 fib(4);
 
 module.exports = fib;
+
+// Notes:
+// 1. Memoization
+//    Store the arguments of each function call along with the result. If the function is called again with the same arguments, return the 
+//    precomputed result, rather than running the function again
 
 // function fib(n) { // Personal attempt
 //     const result = [0, 1];
