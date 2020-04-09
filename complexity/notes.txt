@@ -60,3 +60,19 @@ Questions we might have:
 
         As 'n' increased by one, we had to do way, way more stuff, or (n*n) things total
         Therefore, this would be n^2, quadratic runtime
+
+Some notes on different runtime complexities:
+1. Constant Time, 1             -> No matter how many elements we're working with, the algorithm/operation/whatever will always take the same amount of time
+
+2. Logarithmic Time, log(n)     -> You have this if doubling the number of elements you are iterating over doesn't double the amount of work.
+                                   Always assume that searching operations are log(n).
+
+3. Linear Time, n               -> Iterating through all elements in a collection of data. If you see a for loop spanning from '0' to 'array.length',
+                                   you probably have 'n', or linear runtime.
+
+4. Quasilinear Time, n * log(n) -> You have this if doubling the numbers of elements you are iterating over doesn't double the amount of work. 
+                                   Always assume that any sorting operation is n*log(n).
+
+5. Quadratic Time, n ^ 2        -> Every element in a collection has to be compared to every other element. 'The handshake problem'.
+
+6. Exponential Time, 2 ^ n      -> If you add a *single* element to a collection, the processing power required doubles.
