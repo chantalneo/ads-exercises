@@ -8,6 +8,20 @@
 // Example:
 //   fib(4) === 3
 
+function memoize(fn) {
+    const cache = {};
+    return function(...args) { // I don't know how many arguments we gonna receive, ES6 or ES2015 code, to help make this function generic
+        if (cache[args]) {
+            return cache[args]; // Actual caching mechanism right there
+        }
+
+        const result = fn.apply(this, args);// Whenever we call a function with an array of arguments, use the Apply helper
+        cache[args] = result;
+
+        return result;
+    }
+}
+
 function fib(n) { // An exponential runtime, which should be avoided. So how can we improve this solution? Check out notes' point 1
     if (n < 2) {
         return n;
@@ -16,7 +30,9 @@ function fib(n) { // An exponential runtime, which should be avoided. So how can
     return fib(n-1) + fib(n-2);
 }
 
-fib(4);
+// fib(4);
+
+fib = memoize(fib);
 
 module.exports = fib;
 
@@ -24,6 +40,8 @@ module.exports = fib;
 // 1. Memoization
 //    Store the arguments of each function call along with the result. If the function is called again with the same arguments, return the 
 //    precomputed result, rather than running the function again
+//
+// 2. Slow Fib Function -> Memoizer -> Fast, Memoized Fib Function
 
 // function fib(n) { // Personal attempt
 //     const result = [0, 1];
