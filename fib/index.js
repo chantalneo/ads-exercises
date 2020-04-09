@@ -11,8 +11,11 @@
 function fib(n) {
     const result = [0, 1];
 
-    for (let i = 0; i <= n; i++) {
-        result[i] = result[i-1] + result[i-2] || result[i];
+    for (let i = 2; i <= n; i++) {
+        const a = result[i-1];
+        const b = result[i-2];
+
+        result.push(a + b);
     }
 
     return result[n];
@@ -21,3 +24,13 @@ function fib(n) {
 fib(4);
 
 module.exports = fib;
+
+// function fib(n) { // Personal attempt
+//     const result = [0, 1];
+
+//     for (let i = 0; i <= n; i++) {
+//         result[i] = result[i-1] + result[i-2] || result[i];
+//     }
+
+//     return result[n];
+// }
