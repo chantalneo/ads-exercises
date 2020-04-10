@@ -1,0 +1,7 @@
+Data Structures
+- Ways of organizing information with optimal 'runtime complexity' for adding or removing records
+
+Javascript natively implements several data structures. And we can be asked about 'inferior' data structures.
+
+Functionality of a JS Array:
+- Does everything that a classic queue data structure does
