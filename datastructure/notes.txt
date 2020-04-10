@@ -5,3 +5,66 @@ Javascript natively implements several data structures. And we can be asked abou
 
 Functionality of a JS Array:
 - Does everything that a classic queue data structure does
+
+What is a queue?
+- A queue can be thought of as like a container of sorts, where records or pieces of data enter on one end of this container and then exit on the other
+           |-----------Queue------------|
+  [Record]->[Record]->[Record]->[Record]->[Record]
+
+  e.g., waiting in line to buy tickets from the movie theatre
+           |-----------Queue------------|
+  [Person]->[Person]->[Person]->[Person]->[Person][Ticketing Counter]
+  
+- In a queue, there's no idea of skipping or cutting in line. So, the order in which you get into this queue also dictates the order in which you come out. First in, first out (F-I-F-O)
+  ================================================
+  [A]----->|                   | Nothing in queue
+  [B]      |                   |
+  ================================================
+  [B]----->|        [A]        | 'A' added
+           |                   |
+  ================================================
+           |     [B]->[A]      | 'B' added
+           |                   |
+  ================================================
+           |        [B]        | 'A' removed
+           |                   |
+  ================================================
+
+- The process of adding a record into a queue is referred to as enqueueing or adding a record, and taking something out from the other end is thought of 
+  as dequeuing or removing a record.
+
+- If an interviewer asks you to implement a queue... Remember when we're working with Javascript, we really don't have a rudimentary queue. We have Javascript arrays
+  which are super hyper functional in nature - they have a ton of different ways of interacting with them, whereas a queue has just this tiny little API attached to it.
+  So when we want to implement a queue, usually what we end up doing is taking an array, and then restricting the methods that can be used to enter in to interact with that array.
+  With Javascript, it's done by using the unshift method and then removing something from the end of an array is done by using the pop method.
+  
+  Queue             | Array Equivalent
+  -------------------------------------
+  Add to queue      | array.unshift();
+  Remove from queue | array.pop();
+
+  A very common way of implementing a queue would be to do something like this right below. We might make a queue class like an ES 2015 class. 
+  Inside of that class, we'll initialize an empty array. That array has all these different methods associated with it.
+
+  Queue Class
+  - Array
+    - shift
+    - unshift -> add
+    - push
+    - pop -> remove
+    - splice
+    - slice
+
+  It has all the capabilities in the world, but to make sure that its really clear that we are producing a queue, and so its something that should be interacting with only 
+  as a queue should be. We will usually only expose the unshift and pop methods outside of the class. So in other words, whenever we make a queue with Javascript, we usually 
+  make an array, but we do our best to hide access to all these methods that belong to the array.
+
+  So it might be baffling why in the world would we do that... why would we take an array and purposefully kind of handicap it here and remove some of the methods?
+  There are two answers to that:
+  1. On one hand, it's kind of obvious in an interview setting. If your interviewer says make a queue, then well, we're going to make a queue and we're going to do whatever they say.
+  2. The other reason for kind of hiding the functionality of an array in more of a practical setting are like on a real project, maybe imagine for a second you are working on some 
+     complicated problem, and you want to make you want to solve the problem with an algorithm using a queue. And you realize that if you use a queue it will be a fantastic algorithm 
+     like the best one in the world possible for solving this problem, but if you interact with that queue as though it were an array, then all/some of the performance of that goes downhill.
+     So one possible reason to use a queue and try to obfuscate all the other methods that an array has, would be to make sure that if some other engineer came and started looking at your 
+     algorithms sometime in the future, they wouldn't go like oh this is an array I could just treat it like an array and reorder the elements inside of it or remove the first element 
+     out of it or whatever it might be.
