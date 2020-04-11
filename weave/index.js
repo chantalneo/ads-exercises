@@ -25,19 +25,19 @@
 const Queue = require('./queue');
 
 function weave(sourceOne, sourceTwo) {
-    const weaved = new Queue();
+    const q = new Queue();
+
     while(sourceOne.peek() || sourceTwo.peek()) {
         if (sourceOne.peek()) {
-            weaved.add(sourceOne.peek());
-            sourceOne.remove();
+            q.add(sourceOne.remove());
         }
+        
         if (sourceTwo.peek()) {
-            weaved.add(sourceTwo.peek());
-            sourceTwo.remove();
+            q.add(sourceTwo.remove());
         }
     }
-    console.log(weaved);
-    return weaved;
+
+    return q;
 }
 
    const queueOne = new Queue();
@@ -60,3 +60,19 @@ module.exports = weave;
 //                                          > Result [1, 2, 'Hi', 3]
 //    Different Length Queue Two ['Hi']    /
 //    We gotta make sure that our solution won't over remove from any queue and end up with undefined.
+
+// function weave(sourceOne, sourceTwo) { // Personal attempt
+//     const weaved = new Queue();
+//     while(sourceOne.peek() || sourceTwo.peek()) {
+//         if (sourceOne.peek()) {
+//             weaved.add(sourceOne.peek());
+//             sourceOne.remove();
+//         }
+//         if (sourceTwo.peek()) {
+//             weaved.add(sourceTwo.peek());
+//             sourceTwo.remove();
+//         }
+//     }
+//     console.log(weaved);
+//     return weaved;
+// }

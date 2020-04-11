@@ -17,8 +17,8 @@ class Queue {
     return this.data.pop();
   }
 
-  peek() {
-    return this.data[this.data.length-1];
+  peek() { // Personal attempt, but also instructor's solution
+    return this.data[this.data.length - 1];
   }
 }
 
