@@ -10,8 +10,8 @@
 //   s.pop(); // returns 2
 //   s.pop(); // returns 1
 
-class Stack {
-    constructor() {
+class Stack { 
+    constructor() { // Personal attempt and also instructor's solution
         this.data = [];
     }
 
