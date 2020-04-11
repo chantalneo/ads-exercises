@@ -68,3 +68,54 @@ What is a queue?
      So one possible reason to use a queue and try to obfuscate all the other methods that an array has, would be to make sure that if some other engineer came and started looking at your 
      algorithms sometime in the future, they wouldn't go like oh this is an array I could just treat it like an array and reorder the elements inside of it or remove the first element 
      out of it or whatever it might be.
+
+What is a stack?
+- A stack is extraordinarily similar to a queue. There's just a couple items here and there that are slightly different. So with the stack we are still dealing with an ordered list of records 
+  and you can imagine that those records are living inside of some container which is the actual stack. 
+
+            [Record]
+  [Record]     /\ 
+  Push|   ______| Pop
+      V   | _
+   [Record]  |
+   [Record]  | Stack
+   [Record] _|
+
+- In a queue items are FIFO, but here in a stack, it's FILO - First In, Last Out
+            
+     [A]  [b]
+  Push|   
+      V   
+   ____________
+  |           |
+  |           | Stack
+  |___________|
+  =====================
+     [b]
+  Push|   
+      V   
+   ____________
+  |           |
+  |           | Stack
+  |____[A]____|
+  =====================
+   ____________
+  |           |
+  |    [B]    | Stack
+  |____[A]____|
+  =====================
+     [b]
+      /\
+      | Pop      
+   ____________
+  |           |
+  |           | Stack
+  |____[A]____|
+  =====================
+
+- The process of adding a record into a stack is referred to as pushing, and taking something out from the other end is thought of as popping a record.
+
+- Stack methods:
+  - push  -> Add a record to the stack
+  - pop   -> Remove the "top" record in the stack
+  - peek  -> Return the "top" record without popping it
