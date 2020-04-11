@@ -50,3 +50,13 @@ function weave(sourceOne, sourceTwo) {
    const q = weave(queueOne, queueTwo);
 
 module.exports = weave;
+
+// Notes: 
+// 1. Source Queue One ['Hi', 'To', 'You'] \
+//                                          > Result [1, 'Hi', 2, 'To', 3, 'You']
+//    Source Queue Two [1, 2, 3]           /
+//
+//    Different Length Queue One [1, 2, 3] \
+//                                          > Result [1, 2, 'Hi', 3]
+//    Different Length Queue Two ['Hi']    /
+//    We gotta make sure that our solution won't over remove from any queue and end up with undefined.
