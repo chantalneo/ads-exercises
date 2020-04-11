@@ -16,37 +16,75 @@ const Stack = require('./stack');
 
 class Queue {
     constructor() {
-        this.stackOne = new Stack();
-        this.stackTwo = new Stack();
+        this.first = new Stack();
+        this.second = new Stack();
     }
 
     add(record) {
-        this.stackOne.push(record);
+        this.first.push(record);
     }
 
     remove() {
-        let removed;
-        while (this.stackOne.peek()) {
-            this.stackTwo.push(this.stackOne.pop());
+        while (this.first.peek()) {
+            this.second.push(this.first.pop());
         }
-        removed = this.stackTwo.pop();
-        while (this.stackTwo.peek()) {
-            this.stackOne.push(this.stackTwo.pop());
+
+        const record = this.second.pop();
+
+        while (this.second.peek()) {
+            this.first.push(this.second.pop());
         }
-        return removed;
+
+        return record;
     }
 
     peek() {
-        let peeked;
-        while (this.stackOne.peek()) {
-            this.stackTwo.push(this.stackOne.pop());
+        while (this.first.peek()) {
+            this.second.push(this.first.pop());
         }
-        peeked = this.stackTwo.peek();
-        while (this.stackTwo.peek()) {
-            this.stackOne.push(this.stackTwo.pop());
+
+        const record = this.second.peek();
+
+        while (this.second.peek()) {
+            this.first.push(this.second.pop());
         }
-        return peeked;
+
+        return record;
     }
 }
 
 module.exports = Queue;
+
+// Personal attempt
+// constructor() {
+//     this.stackOne = new Stack();
+//     this.stackTwo = new Stack();
+// }
+
+// add(record) {
+//     this.stackOne.push(record);
+// }
+
+// remove() {
+//     let removed;
+//     while (this.stackOne.peek()) {
+//         this.stackTwo.push(this.stackOne.pop());
+//     }
+//     removed = this.stackTwo.pop();
+//     while (this.stackTwo.peek()) {
+//         this.stackOne.push(this.stackTwo.pop());
+//     }
+//     return removed;
+// }
+
+// peek() {
+//     let peeked;
+//     while (this.stackOne.peek()) {
+//         this.stackTwo.push(this.stackOne.pop());
+//     }
+//     peeked = this.stackTwo.peek();
+//     while (this.stackTwo.peek()) {
+//         this.stackOne.push(this.stackTwo.pop());
+//     }
+//     return peeked;
+// }
