@@ -119,3 +119,37 @@ What is a stack?
   - push  -> Add a record to the stack
   - pop   -> Remove the "top" record in the stack
   - peek  -> Return the "top" record without popping it
+
+What is a linked list?
+- It's an ordered collection of data. The collection contains a number of different nodes. E.g., 4 nodes below... 4 separate nodes, each with some amount of data along with a 
+  reference to the next node:
+  ['Hi'][o]->['There'][o]->['How're'][o]->['You?'][o]->null 
+
+  When we put a handful of these nodes together, we refer to it as a linked list because it quite literally is a list of linked nodes. We will also very frequently refer to this 
+  as a chain or a chain of nodes that are strung together.
+
+  The list of nodes that form this chain has an order that is always maintained. So in other words the order of nodes in a linked list won't suddenly or randomly change, unless 
+  we specifically want to change it.
+
+  In every linked lists, there are always two special nodes, namely, the head node and the tail node.
+      Head                                     Tail
+  ['Hi'][o]->['There'][o]->['How're'][o]->['You?'][o]->null 
+
+  ['Hi'][o] = node
+  ['Hi'] = Data, can be anything we want. E.g., a number, an array, an object or basically any type of valid JavaScript value
+  [o] = Reference to next node
+
+- A quick implementation of a very small linked list:
+const nodeOne = {
+  data: 123 // data can be named as anything else, but by convention, we use data
+};
+
+const nodeTwo = {
+  data: 456 // data can be named as anything else, but by convention, we use data
+};
+
+nodeOne.next = nodeTwo; // just like data, the next property is completely arbitrary. We could call it nextNode, nextRef or whatever we want. But again, we went with the convention
+
+['Hi'][o]->['There'][o]->null
+
+So by convention we usually make sure that every node has exactly two properties the data property and the next property.
