@@ -15,14 +15,18 @@ class LinkedList {
     }
 
     insertFirst(data) {
-        if (this.head) {
-            const predecessor = this.head;
-            this.head = new Node(data);
-            this.head.next = predecessor;
-        } else {
-            this.head = new Node(data);
-        }
+        this.head = new Node(data, this.head);
     }
 }
 
 module.exports = { Node, LinkedList };
+
+// insertFirst(data) { // Personal attempt
+//     if (this.head) {
+//         const predecessor = this.head;
+//         this.head = new Node(data);
+//         this.head.next = predecessor;
+//     } else {
+//         this.head = new Node(data);
+//     }
+// }
