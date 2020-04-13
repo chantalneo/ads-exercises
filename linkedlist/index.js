@@ -53,6 +53,11 @@ class LinkedList {
     clear() {
         this.head = null;
     }
+
+    removeFirst() {
+        const node = this.head;
+        this.head = node.next;
+    }
 }
 
 module.exports = { Node, LinkedList };
