@@ -54,9 +54,12 @@ class LinkedList {
         this.head = null;
     }
 
-    removeFirst() {
-        const node = this.head;
-        this.head = node.next;
+    removeFirst() { // But I prefer my own solution, as it looks more concise
+        if (!this.head) {
+            return;
+        }
+
+        this.head = this.head.next;
     }
 }
 
@@ -90,4 +93,9 @@ module.exports = { Node, LinkedList };
 //     }
 
 //     return node;
+// }
+
+// removeFirst() {
+//     const node = this.head;
+//     this.head = node.next;
 // }
