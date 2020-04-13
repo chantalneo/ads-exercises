@@ -34,10 +34,16 @@ class LinkedList {
         return this.head;
     }
 
-    getLast() {
-        let node = this.head;
+    getLast() { // But I prefer my own solution. This is a tad too lengthy
+        if (!this.head) {
+            return null;
+        }
 
-        while (node.next) {
+        let node = this.head;
+        while (node) {
+            if (!node.next) {
+                return node;
+            }
             node = node.next;
         }
 
@@ -65,4 +71,14 @@ module.exports = { Node, LinkedList };
 //         ref = ref.next;
 //     }
 //     return count;
+// }
+
+// getLast() { // Personal attempt
+//     let node = this.head;
+
+//     while (node.next) {
+//         node = node.next;
+//     }
+
+//     return node;
 // }
