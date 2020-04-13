@@ -19,13 +19,15 @@ class LinkedList {
     }
 
     size() {
-        let count = 0;
-        let ref = this.head;
-        while (ref) {
-            count++;
-            ref = ref.next;
+        let counter = 0;
+        let node = this.head;
+
+        while (node) {
+            counter++;
+            node = node.next;
         }
-        return count;
+        
+        return counter;
     }
 }
 
@@ -39,4 +41,14 @@ module.exports = { Node, LinkedList };
 //     } else {
 //         this.head = new Node(data);
 //     }
+// }
+
+// size() { // Personal attempt
+//     let count = 0;
+//     let ref = this.head;
+//     while (ref) {
+//         count++;
+//         ref = ref.next;
+//     }
+//     return count;
 // }
