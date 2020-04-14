@@ -83,12 +83,14 @@ class LinkedList {
     }
 
     insertLast(data) {
-        const lastNode = this.getLast();
-        const newNode = new Node(data);
-        if (!lastNode) {
-            this.head = newNode;
+        const last = this.getLast();
+
+        if (last) {
+            // There are some existing nodes in our chain
+            last.next = new Node(data);
         } else {
-            lastNode.next = newNode;
+            // The chain is empty!
+            this.head = new Node(data);
         }
     }
 }
@@ -148,4 +150,14 @@ module.exports = { Node, LinkedList };
 //         nextNode = nextNode.next;
 //     }
 //     currentNode.next = null;
+// }
+
+// insertLast(data) {
+//     const lastNode = this.getLast();
+//     const newNode = new Node(data);
+//     if (!lastNode) {
+//         this.head = newNode;
+//     } else {
+//         lastNode.next = newNode;
+//     }
 // }
