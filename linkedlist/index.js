@@ -113,23 +113,20 @@ class LinkedList {
     }
 
     removeAt(index) {
-        let counter = 0;
-        let previousNode;
-        let currentNode = this.head;
-
-        while (currentNode) {
-            if (counter === index) {
-                if (!previousNode) {
-                    this.head = currentNode.next;
-                } else {
-                    previousNode.next = currentNode.next;
-                }
-                return;
-            }
-            counter++;
-            previousNode = currentNode; 
-            currentNode = currentNode.next;
+        if (!this.head) {
+            return;
         }
+
+        if (index === 0) {
+            this.head = this.head.next;
+            return;
+        }
+
+        const previous = this.getAt(index - 1);
+        if (!previous || !previous.next) {
+            return;
+        }
+        previous.next = previous.next.next;
     }
 }
 
@@ -190,7 +187,7 @@ module.exports = { Node, LinkedList };
 //     currentNode.next = null;
 // }
 
-// insertLast(data) {
+// insertLast(data) { // Personal attempt
 //     const lastNode = this.getLast();
 //     const newNode = new Node(data);
 //     if (!lastNode) {
@@ -200,7 +197,7 @@ module.exports = { Node, LinkedList };
 //     }
 // }
 
-// getAt(index) {
+// getAt(index) { // Personal attempt
 //     let node = this.head;
 
 //     if (node && index <= this.size() - 1) {
@@ -210,4 +207,24 @@ module.exports = { Node, LinkedList };
 //     }
 
 //     return node;
+// }
+
+// removeAt(index) { // Personal attempt
+//     let counter = 0;
+//     let previousNode;
+//     let currentNode = this.head;
+
+//     while (currentNode) {
+//         if (counter === index) {
+//             if (!previousNode) {
+//                 this.head = currentNode.next;
+//             } else {
+//                 previousNode.next = currentNode.next;
+//             }
+//             return;
+//         }
+//         counter++;
+//         previousNode = currentNode; 
+//         currentNode = currentNode.next;
+//     }
 // }
