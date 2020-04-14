@@ -97,14 +97,12 @@ class LinkedList {
     getAt(index) {
         let node = this.head;
 
-        if (node) {
+        if (node && index <= this.size() - 1) {
             for (let i = 1; i <= index; i++) {
                 node = node.next;
-                if (i == index) {
-                    break;
-                }
             }
         }
+
         return node;
     }
 }
