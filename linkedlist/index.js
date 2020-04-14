@@ -95,15 +95,21 @@ class LinkedList {
     }
 
     getAt(index) {
+        // if (!this.head) { // Not necessary since we're already returning null below
+        //     return null;
+        // }
+
+        let counter = 0;
         let node = this.head;
-
-        if (node && index <= this.size() - 1) {
-            for (let i = 1; i <= index; i++) {
-                node = node.next;
+        while (node) {
+            if (counter === index) {
+                return node;
             }
-        }
 
-        return node;
+            counter++;
+            node = node.next;
+        }
+        return null;
     }
 }
 
@@ -172,4 +178,16 @@ module.exports = { Node, LinkedList };
 //     } else {
 //         lastNode.next = newNode;
 //     }
+// }
+
+// getAt(index) {
+//     let node = this.head;
+
+//     if (node && index <= this.size() - 1) {
+//         for (let i = 1; i <= index; i++) {
+//             node = node.next;
+//         }
+//     }
+
+//     return node;
 // }
