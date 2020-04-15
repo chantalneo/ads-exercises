@@ -15,7 +15,8 @@ class LinkedList {
     }
 
     insertFirst(data) {
-        this.head = new Node(data, this.head);
+        // this.head = new Node(data, this.head);
+        this.insertAt(data, 0);
     }
 
     size() {
@@ -31,23 +32,25 @@ class LinkedList {
     }
 
     getFirst() {
-        return this.head;
+        // return this.head;
+        return this.getAt(0);
     }
 
     getLast() { // But I prefer my own solution. This is a tad too lengthy
-        if (!this.head) {
-            return null;
-        }
+        // if (!this.head) {
+        //     return null;
+        // }
 
-        let node = this.head;
-        while (node) {
-            if (!node.next) {
-                return node;
-            }
-            node = node.next;
-        }
+        // let node = this.head;
+        // while (node) {
+        //     if (!node.next) {
+        //         return node;
+        //     }
+        //     node = node.next;
+        // }
 
-        return node;
+        // return node;
+        return this.getAt(this.size() - 1);
     }
 
     clear() {
@@ -55,43 +58,46 @@ class LinkedList {
     }
 
     removeFirst() { // But I prefer my own solution, as it looks more concise
-        if (!this.head) {
-            return;
-        }
+        // if (!this.head) {
+        //     return;
+        // }
 
-        this.head = this.head.next;
+        // this.head = this.head.next;
+        this.removeAt(0);
     }
 
     removeLast() {
-        if (!this.head) {
-            return;
-        }
+        // if (!this.head) {
+        //     return;
+        // }
 
-        if(!this.head.next) {
-            this.head = null;
-            return;
-        }
+        // if(!this.head.next) {
+        //     this.head = null;
+        //     return;
+        // }
 
-        let previous = this.head;
-        let node = this.head.next;
+        // let previous = this.head;
+        // let node = this.head.next;
 
-        while(node.next) {
-            previous = node;
-            node = node.next;
-        }
-        previous.next = null;
+        // while(node.next) {
+        //     previous = node;
+        //     node = node.next;
+        // }
+        // previous.next = null;
+        this.removeAt(this.size() - 1);
     }
 
     insertLast(data) {
-        const last = this.getLast();
+        // const last = this.getLast();
 
-        if (last) {
-            // There are some existing nodes in our chain
-            last.next = new Node(data);
-        } else {
-            // The chain is empty!
-            this.head = new Node(data);
-        }
+        // if (last) {
+        //     // There are some existing nodes in our chain
+        //     last.next = new Node(data);
+        // } else {
+        //     // The chain is empty!
+        //     this.head = new Node(data);
+        // }
+        this.insertAt(data, this.size());
     }
 
     getAt(index) {
@@ -148,6 +154,15 @@ class LinkedList {
 
 module.exports = { Node, LinkedList };
 
+// Notes:
+// 1. We could enforce code reuse in LinkedList.
+//    insertFirst(data) -> insertAt(data, 0)
+//    insertLast(data) -> insertAt(data, this.size() - 1)
+//    removeFirst() -> removeAt(0);
+//    removeLast() -> removeLast(this.size() - 1)
+//    getFirst() -> getAt(0)
+//    getLast() -> getAt(this.size() - 1)
+ 
 // insertFirst(data) { // Personal attempt
 //     if (this.head) {
 //         const predecessor = this.head;
