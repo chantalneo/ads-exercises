@@ -1,0 +1,161 @@
+Defining a generator
+
+1. The syntax is kinda weird, definitely dissimilar from any other bit of syntax ever seen in JavaScript before...
+
+    So to define a generator, we write the function keyword and then a star for some crazy reason here and then a name for the function. 
+    The star can go either to the left of the function name or to the right of the function keyword.
+
+    I.e.,
+    function *numbers()                                    function* numbers() {
+                                    or 
+    }                                                      }
+
+2. Diving deeper 
+    function *numbers() {
+        const result = 1 + 1;
+        return 20 + (yield result);
+    }
+
+    const generator = numbers();
+
+    Printing out generator at this point will give you {}
+
+    So we can use this return generator object to manipulate or walk through segments of the code in there.
+    Calling generator.next() will return us an interesting value of {"value":2,"done":false}.
+
+    Here's what generators are doing. When we define a generator, we call the generator, and call next on the return value.
+
+    If we call .next(), the code inside the generator is going to execute until a yield statement is found.
+    When a yield statement is found, execution of that function is paused.
+
+    Visualizing what's going on...
+
+    function *numbers() {
+        const result = 1 + 1;
+        return 20 + (yield result); ------> const gen = numbers(); ---returns---> Generator Object
+    }                                                                                    / \
+                                                                                        |
+                                                                                        |
+                                                                        Has the ability to step through the 
+                                                                        generator function with the 'next'
+                                                                        method
+
+    1st call to 'next'... 
+        It executes all the way up to the yield statement and then automatically returns whatever was yielded.
+        generator.value() ------> const result = 1 + 1 and (yield result) will be executed.
+
+    2nd call to 'next'
+        The next time I call the generator again with a value, that value will be inserted in place of the yield statement.
+        generator.value(5) -----> return 20 + 5 will be executed.
+
+3. Understanding the purpose of generator with a more complicated example
+    function *list() {
+        yield 1;
+        yield 2;
+        yield 3;
+        yield 4;
+        yield 5;            
+    }
+
+    const generator = list();
+    generator.next() // {"value":1,"done":false}
+    generator.next() // {"value":2,"done":false}
+    generator.next() // {"value":3,"done":false}
+    generator.next() // {"value":4,"done":false}
+    generator.next() // {"value":5,"done":false}
+    generator.next() // {"done":true}. We get this because we don't have an explicit return inside of the function
+
+    But why would we ever want to do this and how does this all kind of tie back to the topic of iterating, or iterating over a collection of data?
+
+    function *list() {
+        yield 1;
+        yield 2;
+        yield 3;
+        yield 4;
+        yield 5;            
+    }
+
+    const generator = list();
+
+    const numbers = [];
+
+    for (let value of generator) {
+        numbers.push(value);
+    }
+
+    printing out numbers will give me [1,2,3,4,5]!
+
+    And so this is where generators start to get a little bit more interesting, a little bit more useful. We can iterate over a generator function.
+    And for every yield statement that we have in there, our for loop will execute one time.
+    Since we have five yield statements, we end up running the body of our for loop five times. 
+    Each time, the value variable in there is equal to whatever got yielded out of the generator.
+
+    So you might be seeing this now and thinking okay, well, all right, looks like we can do some amount of iteration, but am I ever going to write like yield 1 2 3 4 5.
+    Am I ever going to just like you know spit out a billion yield statements? How is that useful at all? Why don't I just make an array?
+
+    Good question. So, let's expand this example a little bit and see what happens.
+
+4. Expanding the example to realize the usefulness
+    function *numbers() {
+        yield 1;
+        yield 2;
+        yield* moreNumbers();
+        yield 6;
+        yield 7;            
+    }
+
+    function *moreNumbers() {
+        yield 3;
+        yield 4;
+        yield 5;            
+    }
+
+    const generator = numbers();
+
+    const values = [];
+
+    for (let value of generator) {
+        values.push(value);
+    }
+
+    printing values will give you [1,2,3,4,5,6,7]!
+
+    So this is just another little feature. An interesting one that's going to help us with some more iteration. 
+    If we create two generators, we can nest generators to kind of delegate behavior here.
+
+    So we went from yield 1, 2 and then we said yield star and yield star specifically means hey I'm about to pass you another generator.
+    With that, the next time that someone calls next on this, go into that generator and execute it until we hit a yield statement.
+
+    And so the result is, we call numbers. First time we call next, we get one, then two, and then we hit the yield that delegates to moreNumbers. 
+    So we go into moreNumbers and get three, followed by four and five. moreNumber says no more yields and execution goes back out to six and seven. 
+    Therefore, we get the result 1 to 7.
+
+    Well, still doesn't feel very useful?
+
+5. Getting to a real, somewhat practical example. Pretty theory-based
+    Using ES6 classes to create a Tree class
+
+    class Tree {
+        constructor(value = null, children = []) {
+            this.value = value;
+            this.children = children;
+        }
+
+        *printValues() {
+            yield this.value;
+            for (let child of this.children) {
+                yield* child.printValues();
+            }
+        }
+    }
+
+    const tree = new Tree(1, [
+        new Tree(2, [new Tree(4)]),
+        new Tree(3)
+    ]);
+
+    const values = [];
+    for (let value of tree.printValues()) {
+        values.push(value);
+    }
+    print values will give you [1,2,4,3].
