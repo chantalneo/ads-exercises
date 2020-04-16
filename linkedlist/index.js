@@ -160,6 +160,14 @@ class LinkedList {
             counter++;
         }
     }
+
+    *[Symbol.iterator]() { // This defines a generator function with the key of Symbol.iterator
+        let node = this.head;
+        while (node) {
+            yield node; // For every step along the node we will yield the current node
+            node = node.next;
+        }
+    }
 }
 
 module.exports = { Node, LinkedList };
