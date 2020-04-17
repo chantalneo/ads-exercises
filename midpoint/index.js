@@ -13,13 +13,24 @@
 //   midpoint(l); // returns { data: 'b' }
 
 function midpoint(list) {
-    let slow = 0;
-    let fast = 0;
-    while (list.getAt(fast + 1) && list.getAt(fast + 2)) {
-        slow++;
-        fast += 2;
+    let slow = list.getFirst(); // list.head
+    let fast = list.getFirst();
+
+    while (fast.next && fast.next.next) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
-    return list.getAt(slow);
+    return slow;
 }
 
 module.exports = midpoint;
+
+// function midpoint(list) { // Personal attempt. Whoops, this is wrong. Forgot that I can only iterate through the list one time. With getAt, I've iterated several times...
+//     let slow = 0;
+//     let fast = 0;
+//     while (list.getAt(fast + 1) && list.getAt(fast + 2)) {
+//         slow++;
+//         fast += 2;
+//     }
+//     return list.getAt(slow);
+// }
