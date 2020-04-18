@@ -14,16 +14,31 @@
 
 function circular(list) {
     let slow = list.getFirst();
-    let fast = slow.next;
+    let fast = list.getFirst();
 
     while (fast.next && fast.next.next) {
-        if (slow == fast) {
-            return true;
-        }
         slow = slow.next;
         fast = fast.next.next;
+
+        if (slow === fast) {
+            return true;
+        }
     }
     return false;
 }
 
 module.exports = circular;
+
+// function circular(list) { // Personal attempt
+//     let slow = list.getFirst();
+//     let fast = slow.next;
+
+//     while (fast.next && fast.next.next) {
+//         if (slow === fast) { // Should've used deep checking
+//             return true;
+//         }
+//         slow = slow.next;
+//         fast = fast.next.next;
+//     }
+//     return false;
+// }
