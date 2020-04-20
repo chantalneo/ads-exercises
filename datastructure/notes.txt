@@ -6,6 +6,10 @@ Javascript natively implements several data structures. And we can be asked abou
 Functionality of a JS Array:
 - Does everything that a classic queue data structure does
 
+
+
+
+
 What is a queue?
 - A queue can be thought of as like a container of sorts, where records or pieces of data enter on one end of this container and then exit on the other
            |-----------Queue------------|
@@ -68,6 +72,11 @@ What is a queue?
      So one possible reason to use a queue and try to obfuscate all the other methods that an array has, would be to make sure that if some other engineer came and started looking at your 
      algorithms sometime in the future, they wouldn't go like oh this is an array I could just treat it like an array and reorder the elements inside of it or remove the first element 
      out of it or whatever it might be.
+
+
+
+
+
 
 What is a stack?
 - A stack is extraordinarily similar to a queue. There's just a couple items here and there that are slightly different. So with the stack we are still dealing with an ordered list of records 
@@ -153,3 +162,56 @@ nodeOne.next = nodeTwo; // just like data, the next property is completely arbit
 ['Hi'][o]->['There'][o]->null
 
 So by convention we usually make sure that every node has exactly two properties the data property and the next property.
+
+
+
+
+
+What is a tree?
+- A basic is like the following diagram:
+
+                           [20]
+                           /|\
+                          / | \
+                         /  |  \
+                      [0] [40] [-15]
+                      /|\         \
+                     / | \         \
+                    /  |  \         \
+                [12] [-2] [1]      [-2]
+
+In that diagram...
+1. [xx] is a node
+2. A node has data and children[]. In this example, our data is number, but it can also be a string, an array, an object or whatever we need it to be
+3. 20 is the parent of 0, 40 and -15
+4. 12 and -2 (whom parent is 0) are siblings. 12, -2 (whom parent is 0) and 1 are also siblings 
+5. Despite being on same level, 1 and -2 (whom parent is -15) aren't siblings because they don't share a common parent.
+
+Traversing through the tree = iterating through a tree
+There are different orders of traversal:
+1. Breadth-First traversal
+    Start here -------------->[20]
+                              /|\
+                              / | \
+                            /  |  \
+    Then here ----------->[0] [40] [-15]
+                          /|\         \
+                        / | \         \
+                        /  |  \         \
+    Then here -----> [12] [-2] [1]      [-2]
+
+    So it's like 20, 0, 40, -15, 12, -2, 1, -2
+
+2. Depth-First traversal
+                           [20]
+                           /|\
+                          / | \
+                         /  |  \
+                      [0] [40] [-15]
+                      /|\         \
+                     / | \         \
+                    /  |  \         \
+                [12] [-2] [1]      [-2]
+    So it's like 20, 0, 12, -12, 1, 40, -15, -2
+    Essentially, we start at the top of the tree, then we go down the very left hand side, as far as we can go. 
+    Then as soon as we hit the bottom, we go back up to the closest parent and then go back down again.
