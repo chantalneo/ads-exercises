@@ -10,8 +10,20 @@
 // on the tree class.  Each method should accept a
 // function that gets called with each element in the tree
 
-class Node {}
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.children = [];
+    }
+
+    add(data) {
+        this.children.push(new Node(data));
+    }
+}
 
 class Tree {}
 
 module.exports = { Tree, Node };
+
+// Notes
+// 1. Node's Add function should create a new node and add it to the currrent node's 'children' array when given some data
