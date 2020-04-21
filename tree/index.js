@@ -19,6 +19,12 @@ class Node {
     add(data) {
         this.children.push(new Node(data));
     }
+
+    remove(data) {
+        this.children = this.children.filter(node => {
+            return node.data !== data;
+        });
+    }
 }
 
 class Tree {}
@@ -27,3 +33,4 @@ module.exports = { Tree, Node };
 
 // Notes
 // 1. Node's Add function should create a new node and add it to the currrent node's 'children' array when given some data
+// 2. Node's Remove function should look at each child of the current node and remove any node with its data === data when given some data
