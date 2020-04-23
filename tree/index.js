@@ -31,6 +31,10 @@ class Tree {
     constructor() {
         this.root = null;
     }
+
+    traverseBF(fn) {
+
+    }
 }
 
 module.exports = { Tree, Node };
@@ -38,3 +42,17 @@ module.exports = { Tree, Node };
 // Notes
 // 1. Node's Add function should create a new node and add it to the currrent node's 'children' array when given some data
 // 2. Node's Remove function should look at each child of the current node and remove any node with its data === data when given some data
+// 3. Why do we care about the sequence we traverse the data? 
+//    - E.g. breadth-first 
+//      An example would be to list out the hierarchy, the rank...
+//      CEO, CTO, CMO, COO, VP Engineering, VP Infrastructure, VP Design, Product Manager
+//              [CEO]
+//              / | \
+//             /  |  \
+//            /   |   \
+//        [CTO] [CMO] [COO]
+//        / | \           \
+//       /  |  \           \
+//      /   |   \           \
+// [VP   [VP     [VP       [Product
+// Eng.] Infra.] Design]   Manager]
