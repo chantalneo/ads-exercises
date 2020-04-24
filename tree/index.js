@@ -50,7 +50,7 @@ class Tree {
         while (arr.length) {
             const node = arr.shift();
             
-            for(let i = node.children.length - 1; i >= 0; i--){
+            for(let i = node.children.length - 1; i >= 0; i--){ // Or simply use arr.unshift(...node.children);
                 arr.unshift(node.children[i]);
             }
 
