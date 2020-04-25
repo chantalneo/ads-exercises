@@ -15,25 +15,21 @@ const Node = require('./node');
 
 function levelWidth(root) {
     const arr = [root, 's'];
-    const result = [];
-    let counter = 0;
+    const counters = [0];
 
-    while (arr.length) {
+    while (arr.length > 1) {
         const node = arr.shift();
 
         if (node === 's') {
-            result.push(counter);
-            counter = 0;
-            if (arr.length !== 0) { 
-                arr.push(node) 
-            };
+            counters.push(0);
+            arr.push(node) 
         } else {
-            counter++;
             arr.push(...node.children);
+            counters[counters.length - 1]++;
         }
     }
 
-    return result;
+    return counters;
 }
 
 const root = new Node(0);
@@ -45,3 +41,26 @@ root.children[2].add(5);
 console.log(levelWidth(root));
 
 module.exports = levelWidth;
+
+// function levelWidth(root) { // Personal attempt
+//     const arr = [root, 's'];
+//     const result = [];
+//     let counter = 0;
+
+//     while (arr.length) {
+//         const node = arr.shift();
+
+//         if (node === 's') {
+//             result.push(counter);
+//             counter = 0;
+//             if (arr.length !== 0) { 
+//                 arr.push(node) 
+//             };
+//         } else {
+//             counter++;
+//             arr.push(...node.children);
+//         }
+//     }
+
+//     return result;
+// }
