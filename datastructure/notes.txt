@@ -215,3 +215,32 @@ There are different orders of traversal:
     So it's like 20, 0, 12, -12, 1, 40, -15, -2
     Essentially, we start at the top of the tree, then we go down the very left hand side, as far as we can go. 
     Then as soon as we hit the bottom, we go back up to the closest parent and then go back down again.
+
+
+
+
+
+
+What's a binary (search) tree?
+- Every node can have at most two children.
+- We usually refer to these two children by their position relative to the parent.
+  e.g. the root node has one node to the left and one node to the right. We would thus call a node on the left the left node and the other one the right node
+- We also start to restrict or start to validate the value of every node in the structure...
+          [10]
+          /   \
+         /     \
+       [0]      [12]
+       / \      / \
+      /   \    /   \
+    [-1] [5] [11] [20]
+                  / \
+                 /   \
+              [17]  [99]  
+  In this particular case right here you can very quickly notice that every single value to the left of a parent node seems to have a value less than the parent.
+  And the right node has a value more than the parent.
+- So we can basically come out with a diagram like this:
+              __________________
+              | value/data/key |
+              |left   |   right|
+              |_______|________|
+  value > left.value     value < right.value
