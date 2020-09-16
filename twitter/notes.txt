@@ -1,0 +1,62 @@
+Interview Questions like "How would you design Twitter?"
+
+High level notes:
+- There is no right answer
+- Every interviewer will expect a different answer
+- Focus is usually on the data model
+- Don't mention specific technologies
+- Draw stuff
+- Talk <- very important. We want to be show our ability to communicate and that we can be very vocal / expressive. Try not to ask for time to think, because there would be awkward silence.
+  Instead, give instant follow up question the moment such question is asked.
+
+Strategy the course instructor is recommending:
+    1. Identify Two Core Features 
+                |
+                V
+    2. Possible Implementation 
+                |
+                V
+3. Identify and Address Difficulties
+                |
+                V
+     4. Solutions for Scaling
+
+Identify and Address Difficulties:
+- Tweeting:
+    E.g. the following:
+        - What does a tweet look like in the DB?
+        - How to make the '#topic' and '@mention' systems?
+        - How to implement retweets?
+
+- Feed:
+    E.g. the following:
+        - How to show interesting tweets at top of feed?
+
+Scaling for Users:
+- Caching 
+    E.g. So the general idea here is that maybe a user comes to our server and they say hey I want to get my
+    tweet feed like give me my feed of top tweets. Let's imagine for a second that that feed is very 
+    computationally expensive to put together like it takes a full second to decide what tweets to show to the user.
+    And so if we are starting to get millions of different users who are accessing our server at the same
+    time building out that feed of tweets for every single request that comes in could get really expensive
+    really quickly.
+    So one possible way of addressing that is to say that for some particular user like user ABC when they
+    first come to our server maybe we will get a list of tweets out of our database and we will run some
+    really expensive algorithm on the server to calculate this user's feed like calculate the top 10 tweets
+    that we want to show this user and then we could send those 10 tweets back to the user and then simultaneously
+    also take that top 10 list of tweets and store it in some memory store like memcache or whatever
+    it might be. Then any time that this same user comes back like lets say in the next five minutes or something, rather
+    than going back to the database and pulling out our base list of tweets again and running that expensive
+    algorithm again maybe we just go right back to that memory store pull out the previous feed that we
+    had just calculated and send it back to the user.
+    And so this is the idea of caching doing some expensive work one time storing the result and then reusing
+    that result as soon as we need to recalculate it again.
+
+- Deployment Options
+    E.g. We could say that for maybe we are not able to satisfy a million different users with a
+    single machine running our server so an easy way to approach this would be to say that we are going to
+    create a load balancer. Whenever a user makes a request to our application, it will go to this load 
+    balancer and then the load balancer will be randomly assigning that request to any one of a number 
+    of different identical servers. And so we can have many different servers that are completely invisible 
+    to the user and any one of those servers can handle a given request and respond back.
+    And so this would be an example of horizontal scaling for our application.
