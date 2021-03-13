@@ -2,7 +2,7 @@
 // Check to see if two provided strings are anagrams of eachother.
 // One string is an anagram of another if it uses the same characters
 // in the same quantity. Only consider characters, not spaces
-// or punctuation.  Consider capital letters to be the same as lower case
+// or punctuation. Consider capital letters to be the same as lower case
 // --- Examples
 //   anagrams('rail safety', 'fairy tales') --> True
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
@@ -44,7 +44,7 @@ module.exports = anagrams;
 //       l: 2,
 //       o: 1
 //    }
-//    and hello would give yous:
+//    and hellos would give you:
 //    {
 //       h: 1,
 //       e: 1, 
