@@ -212,7 +212,7 @@ There are different orders of traversal:
                      / | \         \
                     /  |  \         \
                 [12] [-2] [1]      [-2]
-    So it's like 20, 0, 12, -12, 1, 40, -15, -2
+    So it's like 20, 0, 12, -2, 1, 40, -15, -2
     Essentially, we start at the top of the tree, then we go down the very left hand side, as far as we can go. 
     Then as soon as we hit the bottom, we go back up to the closest parent and then go back down again.
 
